@@ -4,39 +4,53 @@ from typing import Dict, Sequence, Union
 from gi.repository import Gtk
 
 VIEW_ACCELERATORS: Dict[str, Union[str, Sequence[str]]] = {
+    # DUNNO: Changing app.quit doesn't work: You'll see the new
+    # binding reflected in the menubar, but neither <Ctrl-Q> nor
+    # <Cmd-Q> work, and you gotta click the close button (×) to
+    # quit. (Perhaps because this is the only accelerator that
+    # appears in the menubar; all other accelerators are "silent"
+    # (the menubar shows a single "python3" dropdown and nothing
+    # else).
+    # - REFER: If you want <Ctrl-Q> to work, you can use Hammerspoon.
+    #   - This Spoon wires <Ctrl-Q> to send <Cmd-Q> (so then either
+    #     binding will quit Meld):
+    #       https://github.com/DepoXy/macOS-Hammyspoony#🥄
+    #       https://github.com/DepoXy/macOS-Hammyspoony/blob/release/Source/AppTapMeld.spoon/init.lua
+    #
+    #  'app.quit': '<Control>Q',  # Doesn't work
     'app.quit': '<Primary>Q',
     'app.help': 'F1',
-    'app.preferences': '<Primary>comma',
-    'view.find': '<Primary>F',
-    'view.find-next': ('<Primary>G', 'F3'),
-    'view.find-previous': ('<Primary><Shift>G', '<Shift>F3'),
-    'view.find-replace': '<Primary>H',
-    'view.go-to-line': '<Primary>I',
+    'app.preferences': '<Control>comma',
+    'view.find': '<Control>F',
+    'view.find-next': ('<Control>G', 'F3'),
+    'view.find-previous': ('<Control><Shift>G', '<Shift>F3'),
+    'view.find-replace': '<Control>H',
+    'view.go-to-line': '<Control>I',
     # Overridden in CSS
-    'view.next-change': ('<Alt>Down', '<Alt>KP_Down', '<Primary>D'),
+    'view.next-change': ('<Alt>Down', '<Alt>KP_Down', '<Control>D'),
     'view.next-pane': '<Alt>Page_Down',
-    'view.open-external': '<Primary><Shift>O',
+    'view.open-external': '<Control><Shift>O',
     # Overridden in CSS
-    'view.previous-change': ('<Alt>Up', '<Alt>KP_Up', '<Primary>E'),
+    'view.previous-change': ('<Alt>Up', '<Alt>KP_Up', '<Control>E'),
     'view.previous-pane': '<Alt>Page_Up',
-    'view.redo': '<Primary><Shift>Z',
+    'view.redo': '<Control><Shift>Z',
     'view.refresh': ('<control>R', 'F5'),
-    'view.save': '<Primary>S',
-    'view.save-all': '<Primary><Shift>L',
-    'view.save-as': '<Primary><Shift>S',
-    'view.undo': '<Primary>Z',
-    'win.close': '<Primary>W',
+    'view.save': '<Control>S',
+    'view.save-all': '<Control><Shift>L',
+    'view.save-as': '<Control><Shift>S',
+    'view.undo': '<Control>Z',
+    'win.close': '<Control>W',
     'win.gear-menu': 'F10',
     'win.fullscreen': 'F11',
-    'win.new-tab': '<Primary>N',
+    'win.new-tab': '<Control>N',
     'win.stop': 'Escape',
     # Shared bindings for per-view filter menu buttons
     'view.vc-filter': 'F8',
     'view.folder-filter': 'F8',
     'view.text-filter': 'F8',
     # File comparison actions
-    'view.file-previous-conflict': '<Primary>J',
-    'view.file-next-conflict': '<Primary>K',
+    'view.file-previous-conflict': '<Control>J',
+    'view.file-next-conflict': '<Control>K',
     'view.file-push-left': '<Alt>Left',
     'view.file-push-right': '<Alt>Right',
     'view.file-pull-left': '<Alt><shift>Right',
@@ -53,7 +67,7 @@ VIEW_ACCELERATORS: Dict[str, Union[str, Sequence[str]]] = {
     'view.folder-copy-right': '<Alt>Right',
     'view.folder-delete': 'Delete',
     # Version control actions
-    'view.vc-commit': '<Primary>M',
+    'view.vc-commit': '<Control>M',
     'view.vc-console-visible': 'F9',
     # Swap the two panes
     'view.swap-2-panes': '<Alt>backslash',
